@@ -1,6 +1,6 @@
 import React from 'react'
 
-function App2() {
+const App2 = () => {
   const title = 'Blog post'
   const body = 'This is my blog post'
   const comments = [

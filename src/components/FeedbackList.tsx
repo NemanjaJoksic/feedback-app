@@ -5,7 +5,7 @@ import {
   FeedbackContextType,
 } from '../context/FeedbackContext'
 
-function FeedbackList() {
+const FeedbackList = () => {
   const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
 
   return (

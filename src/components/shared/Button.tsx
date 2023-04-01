@@ -5,7 +5,7 @@ type ButtonProps = {
   isDisabled: boolean
 }
 
-function Button(props: ButtonProps) {
+const Button = (props: ButtonProps) => {
   return (
     <button
       className='btn btn-primary'

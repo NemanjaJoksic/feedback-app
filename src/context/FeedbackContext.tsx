@@ -11,7 +11,7 @@ export const FeedbackContext = createContext<FeedbackContextType | null>(null)
 
 var nextFeedbackId = feedbackData.length + 1
 
-export function FeedbackProvided(props: React.PropsWithChildren) {
+export const FeedbackProvided = (props: React.PropsWithChildren) => {
   const [feedbacks, setFeedbacks] = useState(feedbackData)
 
   const addFeedback = (feedback: Feedback) => {

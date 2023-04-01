@@ -1,4 +1,4 @@
-function Header() {
+const Header = () => {
   return (
     <header>
       <h2>Feedback UI</h2>

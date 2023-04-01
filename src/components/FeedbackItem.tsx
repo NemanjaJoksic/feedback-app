@@ -10,7 +10,7 @@ type FeedbackItemProps = {
   feedback: Feedback
 }
 
-function FeedbackItem(props: FeedbackItemProps) {
+const FeedbackItem = (props: FeedbackItemProps) => {
   const { deleteFeedback } = useContext(FeedbackContext) as FeedbackContextType
 
   return (

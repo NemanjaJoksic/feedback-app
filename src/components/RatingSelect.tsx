@@ -5,7 +5,7 @@ type RatingSelectProps = {
   selected: number
 }
 
-function RatingSelect(props: RatingSelectProps) {
+const RatingSelect = (props: RatingSelectProps) => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const selectedRating = e.currentTarget.value
     console.log('Rating selected ' + selectedRating)

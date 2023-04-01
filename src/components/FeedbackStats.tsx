@@ -4,7 +4,7 @@ import {
   FeedbackContextType,
 } from '../context/FeedbackContext'
 
-function FeedbackStats() {
+const FeedbackStats = () => {
   const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
 
   const averageRating =

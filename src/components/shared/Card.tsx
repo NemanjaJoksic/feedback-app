@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Card(props: React.PropsWithChildren) {
+const Card = (props: React.PropsWithChildren) => {
   return <div className='card'>{props.children}</div>
 }
 

@@ -3,7 +3,7 @@ import FeedbackStats from '../components/FeedbackStats'
 import FeedbackList from '../components/FeedbackList'
 import { Link } from 'react-router-dom'
 
-function FeedbacksPage() {
+const FeedbacksPage = () => {
   return (
     <div>
       <FeedbackForm />

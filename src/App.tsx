@@ -6,7 +6,7 @@ import AboutPage from './pages/AboutPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { FeedbackProvided } from './context/FeedbackContext'
 
-function App() {
+const App = () => {
   const [feedbacks, setFeedbacks] = useState(feedbackData)
 
   return (

@@ -7,7 +7,7 @@ import {
   FeedbackContextType,
 } from '../context/FeedbackContext'
 
-function FeedbackForm() {
+const FeedbackForm = () => {
   const { addFeedback } = useContext(FeedbackContext) as FeedbackContextType
 
   const [text, setText] = useState('')

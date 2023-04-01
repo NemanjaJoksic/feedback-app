@@ -1,12 +1,10 @@
-import React from "react";
-import { Feedback } from "../data/FeedbackData";
+import React, { useContext } from "react";
+import { FeedbackContext, FeedbackContextType } from "../context/FeedbackContext";
 
-type FeedbackStatsProps = {
-  feedbacks: Array<Feedback>;
-};
+function FeedbackStats() {
 
-function FeedbackStats(props: FeedbackStatsProps) {
-  const feedbacks = props.feedbacks;
+  const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
+
   const averageRating =
     feedbacks.reduce((sum, current) => sum + current.rating, 0) /
     feedbacks.length;

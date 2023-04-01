@@ -1,23 +1,21 @@
-import React from "react";
-import feedbackData, { Feedback } from "../data/FeedbackData";
-import FeedbackItem from "./FeedbackItem";
+import React, { useContext } from "react"
+import FeedbackItem from "./FeedbackItem"
+import {
+  FeedbackContext,
+  FeedbackContextType,
+} from "../context/FeedbackContext"
 
-type FeedbackListProps = {
-  feedbacks: Array<Feedback>;
-  deleteFeedback: (id: number) => void;
-};
+function FeedbackList() {
+  
+  const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
 
-function FeedbackList(props: FeedbackListProps) {
   return (
     <div>
-      {props.feedbacks.map((feedback) => (
-        <FeedbackItem
-          feedback={feedback}
-          deleteFeedback={props.deleteFeedback}
-        />
+      {feedbacks.map((feedback) => (
+        <FeedbackItem feedback={feedback} />
       ))}
     </div>
-  );
+  )
 }
 
-export default FeedbackList;
+export default FeedbackList

@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { Feedback, nextFeedbackId } from "../data/FeedbackData";
+import { useContext, useState } from "react";
 import RatingSelect from "./RatingSelect";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
+import { FeedbackContext, FeedbackContextType } from "../context/FeedbackContext";
 
-type FeedbackFormProps = {
-  addFeedback: (feedback: Feedback) => void;
-};
+function FeedbackForm() {
 
-function FeedbackForm(props: FeedbackFormProps) {
+  const { addFeedback } = useContext(FeedbackContext) as FeedbackContextType
+
   const [text, setText] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [message, setMessage] = useState("");
@@ -36,7 +35,7 @@ function FeedbackForm(props: FeedbackFormProps) {
 
     console.log("Submitting feedback");
 
-    props.addFeedback({ id: nextFeedbackId(), rating: rating, text: text });
+    addFeedback({ id: 0, rating: rating, text: text });
 
     setText("");
     setIsButtonDisabled(true);

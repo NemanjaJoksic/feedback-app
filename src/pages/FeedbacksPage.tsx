@@ -1,8 +1,7 @@
-import React from "react"
-import FeedbackForm from "../components/FeedbackForm"
-import FeedbackStats from "../components/FeedbackStats"
-import FeedbackList from "../components/FeedbackList"
-import { Link } from "react-router-dom"
+import FeedbackForm from '../components/FeedbackForm'
+import FeedbackStats from '../components/FeedbackStats'
+import FeedbackList from '../components/FeedbackList'
+import { Link } from 'react-router-dom'
 
 function FeedbacksPage() {
   return (
@@ -10,8 +9,8 @@ function FeedbacksPage() {
       <FeedbackForm />
       <FeedbackStats />
       <FeedbackList />
-      <div className="about-link">
-        <Link to="/about">Go To About Page</Link>
+      <div className='about-link'>
+        <Link to='/about'>Go To About Page</Link>
       </div>
     </div>
   )

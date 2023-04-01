@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react'
 
 type RatingSelectProps = {
-  select: (x: number) => void;
-  selected: number;
-};
+  select: (x: number) => void
+  selected: number
+}
 
 function RatingSelect(props: RatingSelectProps) {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const selectedRating = e.currentTarget.value;
-    console.log("Rating selected " + selectedRating);
-    props.select(+selectedRating);
-  };
+    const selectedRating = e.currentTarget.value
+    console.log('Rating selected ' + selectedRating)
+    props.select(+selectedRating)
+  }
 
   return (
-    <ul className="rating">
+    <ul className='rating'>
       {Array.from({ length: 10 }, (_, i) => (
         <li key={`rating-${i + 1}`}>
           <input
-            type="radio"
+            type='radio'
             id={`num${i + 1}`}
-            name="rating"
+            name='rating'
             value={i + 1}
             onChange={handleChange}
             checked={props.selected === i + 1}
@@ -28,7 +28,7 @@ function RatingSelect(props: RatingSelectProps) {
         </li>
       ))}
     </ul>
-  );
+  )
 }
 
-export default RatingSelect;
+export default RatingSelect

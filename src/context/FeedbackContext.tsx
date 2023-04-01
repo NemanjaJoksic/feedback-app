@@ -3,8 +3,10 @@ import feedbackData, { Feedback } from '../data/FeedbackData'
 
 export type FeedbackContextType = {
   feedbacks: Array<Feedback>
+  feedbackToEdit: Feedback|null,
   addFeedback: (feedback: Feedback) => void
   deleteFeedback: (id: number) => void
+  loadFeedbackForEditing: (feedback: Feedback) => void
 }
 
 export const FeedbackContext = createContext<FeedbackContextType | null>(null)
@@ -13,6 +15,7 @@ var nextFeedbackId = feedbackData.length + 1
 
 export const FeedbackProvided = (props: React.PropsWithChildren) => {
   const [feedbacks, setFeedbacks] = useState(feedbackData)
+  const [feedbackToEdit, setFeedbackToEdit] = useState<Feedback|null>(null)
 
   const addFeedback = (feedback: Feedback) => {
     feedback.id = nextFeedbackId++
@@ -33,12 +36,19 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
     }
   }
 
+  const loadFeedbackForEditing = (feedback: Feedback) => {
+    console.log("Feedback with ID " + feedback.id + " is loaded for editing")
+    setFeedbackToEdit(feedback)
+  }
+
   return (
     <FeedbackContext.Provider
       value={{
         feedbacks,
+        feedbackToEdit,
         addFeedback,
         deleteFeedback,
+        loadFeedbackForEditing
       }}
     >
       {props.children}

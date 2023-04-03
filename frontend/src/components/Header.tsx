@@ -1,7 +1,9 @@
 const Header = () => {
   return (
     <header>
-      <h2>Feedback UI</h2>
+      <div className='header'>
+        <h2>Feedback UI</h2>
+      </div>
     </header>
   )
 }

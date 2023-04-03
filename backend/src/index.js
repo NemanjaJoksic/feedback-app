@@ -27,6 +27,7 @@ app.get('/api/feedbacks', (req, res) => {
 
 // create feedback
 app.post('/api/feedbacks', (req, res) => {
+  console.log('Creating feedback ...')
   feedback = {
     id: nextFeedbackId++,
     text: req.body.text,
@@ -38,6 +39,7 @@ app.post('/api/feedbacks', (req, res) => {
 
 // update feedback
 app.put('/api/feedbacks/:feedbackId', (req, res) => {
+  console.log('Updating feedback ...')
   feedback = feedbacks.get(+req.params.feedbackId)
   feedback.text = req.body.text
   feedback.rating = req.body.rating
@@ -47,6 +49,7 @@ app.put('/api/feedbacks/:feedbackId', (req, res) => {
 
 // delete feedback
 app.delete('/api/feedbacks/:feedbackId', (req, res) => {
+  console.log('Deleting feedback ...')
   feedback = feedbacks.get(+req.params.feedbackId)
   feedbacks.delete(+req.params.feedbackId)
   return res.json(feedback)

@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { FeedbackContext, FeedbackContextType } from '../context/FeedbackContext'
 
-type RatingSelectProps = {
-  select: (x: number) => void
-  selected: number
-}
+const RatingSelect = () => {
+  const { feedback, loadFeedback } = useContext(FeedbackContext) as FeedbackContextType
 
-const RatingSelect = (props: RatingSelectProps) => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const selectedRating = e.currentTarget.value
     console.log('Rating selected ' + selectedRating)
-    props.select(+selectedRating)
+    loadFeedback({... feedback, rating: +selectedRating})
   }
 
   return (
@@ -22,7 +20,7 @@ const RatingSelect = (props: RatingSelectProps) => {
             name='rating'
             value={i + 1}
             onChange={handleChange}
-            checked={props.selected === i + 1}
+            checked={feedback.rating === i + 1}
           />
           <label htmlFor={`num${i + 1}`}>{i + 1}</label>
         </li>

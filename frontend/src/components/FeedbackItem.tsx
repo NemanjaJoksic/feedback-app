@@ -12,7 +12,13 @@ type FeedbackItemProps = {
 }
 
 const FeedbackItem = (props: FeedbackItemProps) => {
-  const { deleteFeedback } = useContext(FeedbackContext) as FeedbackContextType
+  const { deleteFeedback, loadFeedback } = useContext(
+    FeedbackContext
+  ) as FeedbackContextType
+
+  const editFeedback = () => {
+    loadFeedback(props.feedback)
+  }
 
   return (
     <Card>
@@ -23,7 +29,7 @@ const FeedbackItem = (props: FeedbackItemProps) => {
       >
         <FaTimes color='purple' />
       </button>
-      <button className='edit' onClick={() => {console.log('Editing feedback with ID ' + props.feedback.id)}}>
+      <button className='edit' onClick={() => editFeedback()}>
         <FaEdit color='purple' />
       </button>
       <div className='text-display'>{props.feedback.text}</div>

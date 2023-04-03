@@ -239,3 +239,17 @@ input:focus {
   align-items: center;
   height: 150px;
 }
+
+.container-right {
+  text-align: right;
+}
+
+.btn-clear {
+  /* color: #fff; */
+  border: 0;
+  border-radius: 8px;
+  /* color: #fff; */
+  width: 120px;
+  height: 25px;
+  cursor: pointer;
+}

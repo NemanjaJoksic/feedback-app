@@ -228,3 +228,10 @@ input:focus {
     width: 80%;
   }
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}

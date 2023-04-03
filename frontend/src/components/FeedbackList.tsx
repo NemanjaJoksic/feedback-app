@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { FaSpinner } from 'react-icons/fa'
 import FeedbackItem from './FeedbackItem'
 import {
   FeedbackContext,
@@ -6,15 +7,26 @@ import {
 } from '../context/FeedbackContext'
 
 const FeedbackList = () => {
-  const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
+  const { feedbacksAreLoading, feedbacks } = useContext(
+    FeedbackContext
+  ) as FeedbackContextType
 
-  return (
-    <div>
-      {feedbacks.map((feedback) => (
-        <FeedbackItem feedback={feedback} />
-      ))}
-    </div>
-  )
+  if (feedbacksAreLoading) {
+    return (
+      <div className='spinner'>
+        <FaSpinner size='30' />
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        {feedbacks.map((feedback) => (
+          <FeedbackItem feedback={feedback} />
+        ))}
+      </div>
+    )
+  }
 }
 
 export default FeedbackList
+

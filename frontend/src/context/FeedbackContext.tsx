@@ -32,8 +32,8 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
       },
       body: JSON.stringify(feedback),
     })
-      .then(() => fetchFeedbacks())
       .then(() => setFeedbacksAreLoading(true))
+      .then(() => fetchFeedbacks())
   }
 
   const deleteFeedback = (id: number) => {
@@ -43,7 +43,11 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
       )
     ) {
       console.log('Deleting feedback with ID ' + id)
-      setFeedbacks(feedbacks.filter((feedback) => feedback.id !== id))
+      fetch('/api/feedbacks/' + id, {
+        method: 'DELETE',
+      })
+        .then(() => setFeedbacksAreLoading(true))
+        .then(() => fetchFeedbacks())
     }
   }
 

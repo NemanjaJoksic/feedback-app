@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import feedbackData, { Feedback } from '../data/FeedbackData'
+import { Feedback } from '../model/Feedback'
 
 export type FeedbackContextType = {
   feedbacksAreLoading: boolean
@@ -10,8 +10,6 @@ export type FeedbackContextType = {
 }
 
 export const FeedbackContext = createContext<FeedbackContextType | null>(null)
-
-var nextFeedbackId = feedbackData.length + 1
 
 export const FeedbackProvided = (props: React.PropsWithChildren) => {
   const [feedbacksAreLoading, setFeedbacksAreLoading] = useState(true)
@@ -27,11 +25,15 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
   }
 
   const addFeedback = (feedback: Feedback) => {
-    feedback.id = nextFeedbackId++
-    console.log('Adding a feedback with ID ' + feedback.id)
-    const newFeedbacks = [...feedbacks]
-    newFeedbacks.push(feedback)
-    setFeedbacks(newFeedbacks)
+    fetch('/api/feedbacks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(feedback),
+    })
+      .then(() => fetchFeedbacks())
+      .then(() => setFeedbacksAreLoading(true))
   }
 
   const deleteFeedback = (id: number) => {

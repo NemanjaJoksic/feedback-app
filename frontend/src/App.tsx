@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import feedbackData, { Feedback } from './data/FeedbackData'
+import feedbackData, { Feedback } from './model/Feedback'
 import FeedbacksPage from './pages/FeedbacksPage'
 import AboutPage from './pages/AboutPage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'

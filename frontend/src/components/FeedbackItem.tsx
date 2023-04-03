@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { FaTimes, FaEdit } from 'react-icons/fa'
-import { Feedback } from '../data/FeedbackData'
+import { Feedback } from '../model/Feedback'
 import Card from './shared/Card'
 import {
   FeedbackContext,

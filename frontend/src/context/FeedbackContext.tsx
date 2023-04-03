@@ -1,9 +1,10 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import feedbackData, { Feedback } from '../data/FeedbackData'
 
 export type FeedbackContextType = {
   feedbacksAreLoading: boolean
   feedbacks: Array<Feedback>
+  fetchFeedbacks: () => void
   addFeedback: (feedback: Feedback) => void
   deleteFeedback: (id: number) => void
 }
@@ -16,14 +17,14 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
   const [feedbacksAreLoading, setFeedbacksAreLoading] = useState(true)
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
 
-  useEffect(() => {
+  const fetchFeedbacks = () => {
     fetch('/api/feedbacks')
       .then((response) => response.json())
       .then((feedbacks: Array<Feedback>) => {
         setFeedbacks(feedbacks)
         setFeedbacksAreLoading(false)
       })
-  }, [])
+  }
 
   const addFeedback = (feedback: Feedback) => {
     feedback.id = nextFeedbackId++
@@ -49,6 +50,7 @@ export const FeedbackProvided = (props: React.PropsWithChildren) => {
       value={{
         feedbacksAreLoading,
         feedbacks,
+        fetchFeedbacks,
         addFeedback,
         deleteFeedback,
       }}

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import FeedbackItem from './FeedbackItem'
 import {
@@ -7,9 +7,13 @@ import {
 } from '../context/FeedbackContext'
 
 const FeedbackList = () => {
-  const { feedbacksAreLoading, feedbacks } = useContext(
+  const { feedbacksAreLoading, feedbacks, fetchFeedbacks } = useContext(
     FeedbackContext
   ) as FeedbackContextType
+
+  useEffect(() => {
+    fetchFeedbacks()
+  }, [])
 
   if (feedbacksAreLoading) {
     return (

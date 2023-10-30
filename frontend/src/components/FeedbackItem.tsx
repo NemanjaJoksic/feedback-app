@@ -1,35 +1,31 @@
-import { useContext } from 'react'
 import { FaTimes, FaEdit } from 'react-icons/fa'
 import { Feedback } from '../model/Feedback'
 import Card from './shared/Card'
-import {
-  FeedbackContext,
-  FeedbackContextType,
-} from '../context/FeedbackContext'
+import { useDispatch } from 'react-redux'
+import { deleteFeedback, loadFeedback } from '../store/feedbackSlice'
 
 type FeedbackItemProps = {
   feedback: Feedback
 }
 
 const FeedbackItem = (props: FeedbackItemProps) => {
-  const { deleteFeedback, loadFeedback } = useContext(
-    FeedbackContext
-  ) as FeedbackContextType
+  const dispatch = useDispatch<any>()
 
-  const editFeedback = () => {
-    loadFeedback(props.feedback)
+  const handleEditFeedback = () => {
+    loadFeedback(dispatch, props.feedback)
+  }
+
+  const handleDeleteFeedback = () => {
+    deleteFeedback(dispatch, props.feedback.id)
   }
 
   return (
     <Card>
       <div className='num-display'>{props.feedback.rating}</div>
-      <button
-        className='close'
-        onClick={() => deleteFeedback(props.feedback.id)}
-      >
+      <button className='close' onClick={handleDeleteFeedback}>
         <FaTimes color='purple' />
       </button>
-      <button className='edit' onClick={() => editFeedback()}>
+      <button className='edit' onClick={handleEditFeedback}>
         <FaEdit color='purple' />
       </button>
       <div className='text-display'>{props.feedback.text}</div>

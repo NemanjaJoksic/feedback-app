@@ -1,11 +1,8 @@
-import { useContext } from 'react'
-import {
-  FeedbackContext,
-  FeedbackContextType,
-} from '../context/FeedbackContext'
+import { useSelector } from 'react-redux'
+import { getFeedbacks } from '../store/feedbackSlice'
 
 const FeedbackStats = () => {
-  const { feedbacks } = useContext(FeedbackContext) as FeedbackContextType
+  const feedbacks = useSelector(getFeedbacks)
 
   const averageRating =
     feedbacks.reduce((sum, current) => sum + current.rating, 0) /

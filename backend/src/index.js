@@ -1,3 +1,5 @@
+const rx = require('rxjs')
+
 const express = require('express')
 
 const app = express()
@@ -56,5 +58,36 @@ app.delete('/api/feedbacks/:feedbackId', (req, res) => {
 })
 
 app.listen(PORT, () => {
+
+  const observable = new rx.Observable((observer) => {
+    observer.next(20)
+  })
+  
+  const observer1 = value => console.log("Observer1 received value " + value)
+  const observer2 = value => console.log("Observer2 received value " + value)
+  const observer3 = value => console.log("Observer3 received value " + value)
+
+  observable.subscribe(observer1)
+  observable.subscribe(observer2)
+  observable.subscribe(observer3)
+
+  const subject = new rx.Subject()
+
+  subject.next(1)
+
+  subject.subscribe(observer1)
+
+  subject.next(2)
+  subject.next(3)
+
+  subject.subscribe(observer2)
+
+  subject.next(4)
+
+  subject.subscribe(observer3)
+
+  subject.next(5)
+  subject.next(6)
+
   console.log(`API server is listening on port ${PORT}`)
 })

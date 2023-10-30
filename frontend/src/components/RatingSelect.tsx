@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
-import { FeedbackContext, FeedbackContextType } from '../context/FeedbackContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { getFeedback, loadFeedback } from '../store/feedbackSlice'
 
 const RatingSelect = () => {
-  const { feedback, loadFeedback } = useContext(FeedbackContext) as FeedbackContextType
+  const dispatch = useDispatch<any>()
+
+  const feedback = useSelector(getFeedback)
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const selectedRating = e.currentTarget.value
     console.log('Rating selected ' + selectedRating)
-    loadFeedback({... feedback, rating: +selectedRating})
+    loadFeedback(dispatch, {... feedback, rating: +selectedRating})
   }
 
   return (

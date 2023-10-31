@@ -9,7 +9,7 @@ const RatingSelect = () => {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const selectedRating = e.currentTarget.value
     console.log('Rating selected ' + selectedRating)
-    loadFeedback(dispatch, {... feedback, rating: +selectedRating})
+    dispatch(loadFeedback({... feedback, rating: +selectedRating}))
   }
 
   return (

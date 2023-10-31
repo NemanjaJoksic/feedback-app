@@ -19,7 +19,7 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    loadFeedback(dispatch, { text: '', rating: 10 } as Feedback)
+    dispatch(loadFeedback({ text: '', rating: 10 } as Feedback))
   }, [])
 
   const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ const FeedbackForm = () => {
       setMessage('')
     }
 
-    loadFeedback(dispatch, { ...feedback, text: newTextValue })
+    dispatch(loadFeedback({ ...feedback, text: newTextValue }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,16 +43,16 @@ const FeedbackForm = () => {
 
     console.log(feedback.id)
     if (feedback.id === undefined) {
-      createFeedback(dispatch, feedback)
+      dispatch(createFeedback(feedback))
     } else {
-      updateFeedback(dispatch, feedback)
+      dispatch(updateFeedback(feedback))
     }
 
     setMessage('')
   }
 
   const clearRatingForm = () => {
-    loadFeedback(dispatch, { text: '', rating: 10 } as Feedback)
+    dispatch(loadFeedback({ text: '', rating: 10 } as Feedback))
   }
 
   return (

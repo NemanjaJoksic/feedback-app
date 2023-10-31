@@ -12,11 +12,11 @@ const FeedbackItem = (props: FeedbackItemProps) => {
   const dispatch = useDispatch<any>()
 
   const handleEditFeedback = () => {
-    loadFeedback(dispatch, props.feedback)
+    dispatch(loadFeedback(props.feedback))
   }
 
   const handleDeleteFeedback = () => {
-    deleteFeedback(dispatch, props.feedback.id)
+    dispatch(deleteFeedback(props.feedback.id))
   }
 
   return (

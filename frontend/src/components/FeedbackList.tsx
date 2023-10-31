@@ -15,7 +15,7 @@ const FeedbackList = () => {
   const feedbacks = useSelector(getFeedbacks)
 
   useEffect(() => {
-    fetchFeedbacks(dispatch)
+    dispatch(fetchFeedbacks())
   }, [])
 
   if (isLoading) {

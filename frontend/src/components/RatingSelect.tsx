@@ -1,13 +1,14 @@
-import React, { useContext } from 'react'
-import { FeedbackContext, FeedbackContextType } from '../context/FeedbackContext'
+import React from 'react'
+import { useFeedbackStore } from '../store/FeedbackStore'
 
 const RatingSelect = () => {
-  const { feedback, loadFeedback } = useContext(FeedbackContext) as FeedbackContextType
+  const feedback = useFeedbackStore((store) => store.feedback)
+  const loadFeedback = useFeedbackStore((store) => store.actions.load)
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     const selectedRating = e.currentTarget.value
     console.log('Rating selected ' + selectedRating)
-    loadFeedback({... feedback, rating: +selectedRating})
+    loadFeedback({ ...feedback, rating: +selectedRating })
   }
 
   return (

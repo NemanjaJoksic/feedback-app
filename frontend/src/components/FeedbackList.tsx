@@ -1,21 +1,18 @@
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import FeedbackItem from './FeedbackItem'
-import {
-  FeedbackContext,
-  FeedbackContextType,
-} from '../context/FeedbackContext'
+import { useFeedbackStore } from '../store/FeedbackStore'
 
 const FeedbackList = () => {
-  const { feedbacksAreLoading, feedbacks, fetchFeedbacks } = useContext(
-    FeedbackContext
-  ) as FeedbackContextType
+  const isLoading = useFeedbackStore((store) => store.isLoading)
+  const feedbacks = useFeedbackStore((store) => store.feedbacks)
+  const getAllFeedbacks = useFeedbackStore((store) => store.actions.getAll)
 
   useEffect(() => {
-    fetchFeedbacks()
+    getAllFeedbacks()
   }, [])
 
-  if (feedbacksAreLoading) {
+  if (isLoading) {
     return (
       <div className='spinner'>
         <FaSpinner size='30' />

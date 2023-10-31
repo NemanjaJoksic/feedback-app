@@ -1,17 +1,15 @@
-import { useContext, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import RatingSelect from './RatingSelect'
 import Button from './shared/Button'
 import Card from './shared/Card'
-import {
-  FeedbackContext,
-  FeedbackContextType,
-} from '../context/FeedbackContext'
 import { Feedback } from '../model/Feedback'
+import { useFeedbackStore } from '../store/FeedbackStore'
 
 const FeedbackForm = () => {
-  const { feedback, addFeedback, updateFeedback, loadFeedback } = useContext(
-    FeedbackContext
-  ) as FeedbackContextType
+  const feedback = useFeedbackStore(store => store.feedback)
+  const addFeedback = useFeedbackStore(store => store.actions.create)
+  const updateFeedback = useFeedbackStore(store => store.actions.update)
+  const loadFeedback = useFeedbackStore(store => store.actions.load)
 
   const [message, setMessage] = useState('')
 
